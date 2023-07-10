@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
