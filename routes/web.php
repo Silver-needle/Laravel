@@ -41,6 +41,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ], static function() {
     Route::resource('/news', AdminNewsController::class);
 });
 
+//Homepage
+Route::get('/homepage', [HelloController::class, 'index']) -> name('hello.index');
+
 //News
 Route::get('/news', [NewsController::class, 'index'])
 ->name('news.index');
@@ -48,3 +51,11 @@ Route::get('/news', [NewsController::class, 'index'])
 Route::get('/news/{id}', [NewsController::class, 'show'])
 ->where('id', '\d+') //чтобы пользователь видел не ошибки, а 404
 ->name('news.show');
+
+//Categories
+Route::get('/categories', [CategoryController::class, 'index'])
+-> name('category.index');
+
+Route::get('/categories/{id}', [CategoryController::class, 'show']) 
+-> where('id', '\d+')
+-> name('category.show');
