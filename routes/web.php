@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+*/
 /* Lesson 1
 Route::get('/hello/{name}', static function (string $name) {
     return "Hello, $name";
@@ -42,7 +44,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ], static function() {
 });
 
 //Homepage
-Route::get('/homepage', [HelloController::class, 'index']) -> name('hello.index');
+Route::get('/', [HomepageController::class, 'homepage'])
+->name('homepage.index');
 
 //News
 Route::get('/news', [NewsController::class, 'index'])
@@ -54,8 +57,8 @@ Route::get('/news/{id}', [NewsController::class, 'show'])
 
 //Categories
 Route::get('/categories', [CategoryController::class, 'index'])
--> name('category.index');
+-> name('categories.index');
 
 Route::get('/categories/{id}', [CategoryController::class, 'show']) 
 -> where('id', '\d+')
--> name('category.show');
+-> name('categories.show');
