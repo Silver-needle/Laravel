@@ -31,7 +31,7 @@ class CategoryController extends Controller
     }
     public function index(): View
     {
-        return \view('category.index', [
+        return \view('categories.index', [
             'categories' => $this->getCats(),
         ]);
     }

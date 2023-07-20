@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,3 +63,7 @@ Route::get('/categories', [CategoryController::class, 'index'])
 Route::get('/categories/{id}', [CategoryController::class, 'show']) 
 -> where('id', '\d+')
 -> name('categories.show');
+
+Route::get('/test', function() {
+    return response()->download('robots.txt');
+});
