@@ -6,7 +6,7 @@ namespace Tests\Feature\Http\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\Response;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class NewsControllerTest extends TestCase
@@ -21,7 +21,7 @@ class NewsControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testNewsCresteSuccess(): void
+    public function testNewsCreateSuccess(): void
     {
         $response = $this->get(route('admin.news.create'));
 
@@ -31,16 +31,17 @@ class NewsControllerTest extends TestCase
     public function testNewsStoreSuccess(): void
     {
         $postData = [
-            'title' => fake()->jobTitle(),
-            'author' => fake()->userName(),
-            'status' => 'draft',
-            'description' => fake()->text(100),
+           'title' => fake()->jobTitle(),
+           'author' => fake()->userName(),
+           'status' => 'draft',
+           'description' => fake()->text(100),
         ];
+
         $response = $this->post(route('admin.news.store'), $postData);
-        $response->assertStatus(status: Response::HTTP_OK);
+
+        $response->assertStatus(Response::HTTP_OK);
         $response->assertJson($postData);
     }
-
     public function testNewsStoreError(): void
     {
         $postData = [
@@ -48,11 +49,9 @@ class NewsControllerTest extends TestCase
             'status' => 'draft',
             'description' => fake()->text(100),
         ];
+
         $response = $this->post(route('admin.news.store'), $postData);
         $response->assertFound();
     }
 
-    public function testNewsShowSuccess(): void
-    {
-    }
 }

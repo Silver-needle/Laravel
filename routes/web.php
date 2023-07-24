@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ], static function() {
 
 //Homepage
 Route::get('/', [HomepageController::class, 'homepage'])
-->name('homepage.index');
+->name('homepage');
 
 //News
 Route::get('/news', [NewsController::class, 'index'])
@@ -66,4 +66,8 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])
 
 Route::get('/test', function() {
     return response()->download('robots.txt');
+});
+
+Route::get('/homepage', function() {
+    return response()->download('downloadNews.txt');
 });
