@@ -37,4 +37,5 @@
 @endsection
 <x-footer></x-footer>
 </body>
+//test connection
 </html>
