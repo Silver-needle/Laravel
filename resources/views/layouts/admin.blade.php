@@ -196,7 +196,7 @@
   </svg>
   <div class="container-fluid">
     <div class="row">
-    <x-admin.sidebar></x-admin.sidebar>
+      <x-admin.sidebar></x-admin.sidebar>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         @yield('content')
       </main>
@@ -204,6 +204,8 @@
   </div>
   <script src="{{ asset('assets/bootstrap.bundle.min.js') }}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <script src="{{ asset('assets/dashboard.js') }}"></script>
+
+  @stack('js')
 </body>
 
 </html>

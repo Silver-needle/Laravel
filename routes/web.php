@@ -38,7 +38,7 @@ Route::get('/about/', function () {
 });
 */
 //Admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.' ], static function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function () {
     Route::get('/', AdminController::class)->name('index');
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/news', AdminNewsController::class);
@@ -46,28 +46,36 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ], static function() {
 
 //Homepage
 Route::get('/', [HomepageController::class, 'homepage'])
-->name('homepage');
+    ->name('homepage');
 
 //News
 Route::get('/news', [NewsController::class, 'index'])
-->name('news.index');
+    ->name('news.index');
 
 Route::get('/news/{id}', [NewsController::class, 'show'])
-->where('id', '\d+') //чтобы пользователь видел не ошибки, а 404
-->name('news.show');
+    ->where('id', '\d+') //чтобы пользователь видел не ошибки, а 404
+    ->name('news.show');
 
 //Categories
 Route::get('/categories', [CategoryController::class, 'index'])
--> name('categories.index');
+    ->name('categories.index');
 
-Route::get('/categories/{id}', [CategoryController::class, 'show']) 
--> where('id', '\d+')
--> name('categories.show');
+Route::get('/categories/{id}', [CategoryController::class, 'show'])
+    ->where('id', '\d+')
+    ->name('categories.show');
 
-Route::get('/test', function() {
+Route::get('/test', function () {
     return response()->download('robots.txt');
 });
 
-Route::get('/homepage', function() {
+Route::get('/homepage', function () {
     return response()->download('downloadNews.txt');
+});
+
+Route::get('/collection', function () {
+    $array = [1, 4, 6, 79, 07, 786, 890, 7788];
+    $collect = collect($array);
+    dd($collect->map(fn ($item) => $item * 2)->chunk(3)->sortBy(function ($item) {
+        return $item;
+    })->toArray());
 });
