@@ -15,13 +15,16 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request): View
     {
+        $news = News::orderByDesc('id')->paginate(3);
+
         return view('admin.news.index', [
             'newsList' => News::query()
-            ->status()
-            ->with('category')
-            ->paginate(10),
+                ->status()
+                ->with('category')
+                ->paginate(10),
         ]);
     }
 
@@ -45,13 +48,13 @@ class NewsController extends Controller
         ]);
         $data = $request->only(['category_id', 'title', 'author', 'status', 'description']);
 
-       $news = new News($data);
+        $news = new News($data);
 
-       if ($news->save()) {
-           return redirect()->route('admin.news.index')->with('success', 'Запись успешно сохранена');
-       }
+        if ($news->save()) {
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно сохранена');
+        }
 
-       return back()->with('error', 'Не удалось добавить запись');
+        return back()->with('error', 'Не удалось добавить запись');
     }
     /**
      * Display the specified resource.

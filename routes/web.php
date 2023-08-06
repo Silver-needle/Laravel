@@ -79,3 +79,7 @@ Route::get('/collection', function () {
         return $item;
     })->toArray());
 });
+
+Route::get('/homepage/download/{id}', 'downloadNews')->middleware('date');
+
+Route::post('import', 'App\Http\Controllers\DownloadController@import');
