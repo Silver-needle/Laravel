@@ -1,7 +1,16 @@
-<h2><?=$news['id']?>  <?=$news['title']?></h2>
+@extends('layouts.main')
+@section('title') {{ $news['title'] }} - @parent @stop
+@section('content')
+<h2>{{ $news['id'] }}  {{ $news['title'] }}</h2>
 <br/>
 <div>
-  <img src="<?=$news['image']?>">
-  <p><em><?=$news['author']?></em> &nbsp; (<?=$news['created_at']?>)</p>
-  <p><?=$news['description']?></p>
-</div>
+  <img src="{{ $news['image'] }}">
+  <p><em>{{ $news['author'] }}</em> &nbsp; ({{ $news['created_at'] }})</p>
+  <p>{{ $news['description'] }}</p>
+</div><hr /><br />
+@endsection
+@push('js')
+<script>
+  alert('Hello');
+</script>
+@endpush
